@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- <div class="col-md-6"> -->
+          <nav class="navbar navbar-expand-lg  " data-sticky="top">
+            <div class="container">
+              <a class="navbar-brand fade-page" href="index.html">
+                <img src="https://uploads-ssl.webflow.com/62fc7544b2fc768dd0d052e6/62fc7c0bd02ef3d093c765d0_dark_ihorizon.svg" alt="Leap">
+              </a>
+              <div>
+                <a href='/supportdesk/myRequest/'class="btn btn-outline-primary ml-lg-3">My Request ({{count}})</a>
+                <a href="/supportdesk/home/" class="btn btn-primary ml-lg-3">+ New Request</a>
+              </div>  
+            </div>
+          </nav>
+    </div>
+        <!-- <div class="col-md-6"> -->
+    <div class="row justify-content-center" style="
+    padding: 100px;">
+    <div style="padding: 50px; border-radius: 1px; border-color: black; color: black;">
+    <h3 style="padding-bottom: 10px;"> Request Information</h3>
+      <form method='POST' action='/supportdesk/create/' style="color: black;">
+        {% csrf_token %}
+        {{ form|crispy }}
+           
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+          
+    </div>
+  </div>
+</div>
+
+{% endblock %}

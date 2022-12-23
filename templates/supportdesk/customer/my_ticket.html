@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}  
+
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <!-- <div class="col-md-6"> -->
+    <nav class="navbar navbar-expand-lg  " data-sticky="top">
+      <div class="container">
+        <a class="navbar-brand fade-page" href="index.html">
+          <img src="https://uploads-ssl.webflow.com/62fc7544b2fc768dd0d052e6/62fc7c0bd02ef3d093c765d0_dark_ihorizon.svg"
+            alt="Leap">
+        </a>
+        <div>
+          <a href='/supportdesk/myRequest/'class="btn btn-outline-primary ml-lg-3">My Request ({{count}})</a>
+                <a href="/supportdesk/home/" class="btn btn-primary ml-lg-3">+ New Request</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+<div class="container " style="padding: 60px;">
+  <div class="row " >
+    <h4>My requests </h4>
+  </div>
+
+
+
+  {% for i in listed_data %}
+  
+  <div class="row" style="border-radius: 1px; border: solid; border-color:grey; padding: 20px; margin-bottom: 15px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8" style="
+        padding: 0px;">
+
+
+
+          <h2>{{i.summary}} {% if i.is_priority %}<label class="pull-right" style="border: solid;
+            border-radius: 25px;
+  
+            border-color: brown; background-color: brown;  font-size: 12px;
+            color: white;
+            padding: 3px;">High priority</label>{% endif %}</h2>
+        </div>
+
+        {% if i.is_completed %}
+            
+        <div class="col-md-4" style="
+        padding: 0px;">
+          <label class="" style="border: solid;
+          border-radius: 25px;
+
+          border-color: #217e4f; background-color: white;  font-size: 15px;
+          color: #217e4f;
+          padding: 5px;float:right; font-weight: bold;">Completed</label>
+        </div>
+        {% else %}
+
+        <div class="col-md-4" style="
+        padding: 0px;">
+          <label class="" style="border: solid;
+          border-radius: 25px;
+
+          border-color: #3755be; background-color: white;  font-size: 15px;
+          color: #3755be;
+          padding: 5px;float:right; font-weight: bold;">In progress</label>
+        </div>
+
+        
+        {% endif %}
+
+      </div>
+      <div class="row">
+        <p>{{i.description}} </p>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/static/assets/img/icons/calender.svg" style="fill: grey;" width="22px" height="22px"/>
+          <label>Created {{i.days}}  days ago</label>
+        </div >
+        <div class="col-md-6">
+          <img src="/static/assets/img/icons/people.svg" style="fill: grey;" width="25px" height="25px"/>
+          <label>Assigned to {{i.assigned_to}}  (Agent)</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+
+
+
+</div>
+
+{% endblock %}

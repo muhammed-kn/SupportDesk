@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}  
+
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <!-- <div class="col-md-6"> -->
+    <nav class="navbar navbar-expand-lg  " data-sticky="top">
+      <div class="container">
+        <a class="navbar-brand fade-page" href="index.html">
+          <img src="https://uploads-ssl.webflow.com/62fc7544b2fc768dd0d052e6/62fc7c0bd02ef3d093c765d0_dark_ihorizon.svg"
+            alt="Leap">
+        </a>
+        <div>
+        
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+<div class="container " style="padding: 60px;">
+  <div class="row " >
+    <h4>My requests </h4>
+  </div>
+
+  {% for i in listed_data %}
+  <a href="/supportdesk/agentSingleView/{{i.id}}" style="color: grey; font-weight: lighter;">
+  <div class="row" style="border-radius: 1px; border: solid; border-color:grey; padding: 20px; margin-bottom: 15px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8" style="
+        padding: 0px;">
+
+
+
+          <h2>{{i.summary}} {% if i.is_priority %}<label class="pull-right" style="border: solid;
+            border-radius: 25px;
+  
+            border-color: brown; background-color: brown;  font-size: 12px;
+            color: white;
+            padding: 3px;">High priority</label>{% endif %}</h2>
+        </div>
+
+        {% if i.is_completed %}
+            
+        <div class="col-md-4" style="
+        padding: 0px;">
+          <label class="" style="border: solid;
+          border-radius: 25px;
+
+          border-color: #217e4f; background-color: white;  font-size: 15px;
+          color: #217e4f;
+          padding: 5px;float:right; font-weight: bold;">Completed</label>
+        </div>
+        {% else %}
+
+        <div class="col-md-4" style="
+        padding: 0px;">
+          <label class="" style="border: solid;
+          border-radius: 25px;
+
+          border-color: #3755be; background-color: white;  font-size: 15px;
+          color: #3755be;
+          padding: 5px;float:right; font-weight: bold;">In progress</label>
+        </div>
+
+        
+        {% endif %}
+
+      </div>
+      <div class="row">
+        <p>{{i.description}} </p>
+      </div>
+      <div class="row">
+        <label style="font-weight:bolder;"> Quick action</label>
+      </div>
+      <div class="row">
+       
+        
+        <a href="/supportdesk/reassign/{{i.id}}/"><div style="border: solid;
+        border-radius: 5px;
+
+        border-color: #76789E; background-color: white;  font-size: 15px;
+        color: #76789E;
+        padding: 5px;float:right; font-weight: bold; " >
+          <img src="/static/assets/img/icons/admin.svg" style="fill: #76789E;" width="20px" height="20px"/>
+          <label style="margin-bottom: 0px;">Reassign to someone</label>
+        </div>
+      </a>
+
+
+      <a href= "/supportdesk/completed/{{i.id}}/">
+        <div style="border: solid;
+         border-radius: 5px;
+ 
+         border-color: #19A664; background-color: white;  font-size: 15px;
+         color: #19A664;
+         padding: 5px;float:right; font-weight: bold; margin-left: 15px;">
+           <img src="/static/assets/img/icons/tick.svg" style="fill: #19A664;" width="20px" height="20px"/>
+           <label style="margin-bottom: 0px;">Mark as completed</label>
+         </div >
+       </a>
+    
+      </div>
+
+       
+    </div>
+  </div>
+  </a>
+
+  {% endfor %}
+
+
+
+</div>
+
+{% endblock %}
